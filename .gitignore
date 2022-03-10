@@ -3,5 +3,6 @@
 *.out
 .vscode
 
-exec/*
+exec/*.out
+exec/*.o
 hold/*
