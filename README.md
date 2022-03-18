@@ -1,33 +1,39 @@
 # Exercise Files
 
-## Compile and Run - Run a Build Script
+## Compile and Run with Input File
 ```bash
-sh build/intro_for_loop.sh
+sh build.sh -x classes_structs
 
-generic:
-sh build/<project_name>.sh
+Generic:
+sh build.sh -x <project_name_without_extension>
 ```
 
-## Just run after compile
+## Compile and Run without Input File
+```bash
+sh build.sh -c classes_structs
+
+Generic:
+sh build.sh -c <project_name_without_extension>
+```
+
+## Just Run a Program by Name
 ```bash
 ./exec/intro_for_loop.out
 
-generic:
+Generic:
 ./exec/<project_name>.out
-```
-
-## Build Projects
-```bash
-sh build/intro_arrays.sh
-sh build/intro_for_loop.sh
-sh build/intro_io_scanf_printf.sh
-sh build/intro_pointer.sh
 ```
 
 ## Run Projects
 ```bash
-./exec/intro_arrays.out
-./exec/intro_for_loop.out
-./exec/intro_io_scanf_printf.out
-./exec/intro_pointer.out
+intro_arrays
+intro_for_loop
+intro_io_scanf_printf
+intro_pointer
+classes_structs
 ```
+
+## Lessons
+
+Note: Unlike C, C++ allows dynamic allocation of arrays at runtime without special calls like malloc(). If , int arr[n] will create an array with space for  integers.
+Accessing elements of an array.  E.g. c would require int arr[10] explicitily without malloc();

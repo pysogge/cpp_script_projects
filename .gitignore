@@ -6,3 +6,5 @@
 exec/*.out
 exec/*.o
 hold/*
+
+build/
