@@ -1,4 +1,4 @@
-# Build and Run CPP File
+# Build and Run CPP Files (With or Without Input Files)
 
 ##  sh build.sh -x <filename> (with or without extension)
 

@@ -1,6 +1,6 @@
 # Build New Source Files
 
-#  sh makenew.sh -x <filename> (with or without extension)
+##  sh makenew.sh -x <filename> (with or without extension)
 ## Removes all files with file basename (.cpp, .out, .txt)
 ## Makes a new cpp source file <filename>.cpp and input file <filename>-input.txt
 

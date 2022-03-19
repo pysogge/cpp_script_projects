@@ -2,36 +2,31 @@
 
 ## Compile and Run with Input File
 ```bash
-sh build.sh -x classes_structs
+sh build.sh -x classes_structs.cpp
 
-Generic:
-sh build.sh -x <project_name_without_extension>
+##  sh build.sh -x <filename> (with or without extension)
+
+## -x build and then run with an input file
+## -c build and then run without an input file
+## -b build only
+## -i run only with input file
+## -r run only without input file
 ```
 
-## Compile and Run without Input File
+## Make new files and input files
 ```bash
-sh build.sh -c classes_structs
+sh makenew.sh -x classes_structs.cpp
 
-Generic:
-sh build.sh -c <project_name_without_extension>
+##  sh makenew.sh -x <filename> (with or without extension)
+## Removes all files with file basename (.cpp, .out, .txt)
+## Makes a new cpp source file <filename>.cpp and input file <filename>-input.txt
+
+## -n make  (touch) new source and input files only (.cpp, .txt)
+## -r remove old files (.cpp, .out, .txt) only
+## -x remove and make new files (.cpp, .out, .txt)
 ```
 
-## Just Run a Program by Name
-```bash
-./exec/intro_for_loop.out
 
-Generic:
-./exec/<project_name>.out
-```
-
-## Run Projects
-```bash
-intro_arrays
-intro_for_loop
-intro_io_scanf_printf
-intro_pointer
-classes_structs
-```
 
 ## Lessons
 
