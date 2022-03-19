@@ -1,61 +1,83 @@
-isinputfile=false
-output=false
-issourcefile=false
-iscompileandrun=false
-sourcefile="default.cpp"
-inputfilename="default.txt"
-runfile="default.out"
-runonly=false;
+# Build and Run CPP File
 
-while getopts i:s:c:x:r: flag
+##  sh build.sh -x <filename> (with or without extension)
+
+## -x build and then run with an input file
+## -c build and then run without an input file
+## -b build only
+## -i run only with input file
+## -r run only without input file
+
+## DEFINE
+sourcedir="."
+inputdir="./inputs"
+runfiledir="./exec"
+
+## Globals
+
+sourcename="default"
+sourcefile="default.cpp"
+inputfile="default.txt"
+runfile="default.out"
+
+isrun=false
+isbuild=false
+isuseinputfile=false;
+
+
+# isinputfile=false
+# output=false
+# issourcefile=false
+# iscompileandrun=false
+# sourcefile="default.cpp"
+# inputfile="default.txt"
+# runfile="default.out"
+# runonly=false;
+
+while getopts x:c:b:r:i: opt
 do
-    case "${flag}" in
-        i) isinputfile=true;;
-        s) sourcefile="${OPTARG}.cpp"
-        issourcefile=true;;
-        c) sourcefile="${OPTARG}.cpp"
-        issourcefile=true
-        iscompileandrun=true;;
+    sourcename=${OPTARG}
+    sourcename=$(echo "$sourcename" | cut -f 1 -d '.') || $sourcename
+    sourcefile="$sourcedir/$sourcename.cpp"
+    inputfile="$inputdir/$sourcename-input.txt"
+    runfile="$runfiledir/$sourcename.out"
+    case "${opt}" in
         x)
-        sourcename=${OPTARG}
-        sourcefile="$sourcename.cpp"
-        inputfilename="$sourcename-input.txt"
-        isinputfile=true
-        issourcefile=true;;
+            isbuild=true
+            isrun=true
+            isuseinputfile=true;;
+        c)
+            isbuild=true
+            isrun=true;;
+        b)
+            isbuild=true;;
         r) 
-        sourcename=${OPTARG}
-        runfile="$sourcename.out"
-        runonly=true;;
+            isrun=true;;
+        i) 
+            isrun=true
+            isuseinputfile=true;;
     esac
 done
 
-if [ "$issourcefile" = true ] ; then
+if [ "$isbuild" = true ] ; then
     echo "Building source: $sourcefile";
-    echo "g++ $sourcefile -o ./exec/$sourcefile.out"
-    g++ $sourcefile -o ./exec/$sourcefile.out
+    echo "g++ $sourcefile -o $runfile"
+    g++ $sourcefile -o $runfile
+fi
 
-    if [ "$iscompileandrun" = true ] ; then
-        echo "Running program: $sourcefile";
-        echo "./exec/$sourcefile.out"
+if [ "$isrun" = true ] ; then
+    echo "Running program: $sourcefile";
+    if [ "$isuseinputfile" = true ]
+    then
+        echo "Using input: $inputfile"
+        echo "cat $inputfile | $runfile"
         echo "===Program output:==="
-        ./exec/$sourcefile.out
+        cat $inputfile | $runfile
+    else
+        echo "With no input file"
+        echo "$runfile";
+        echo "===Program output:==="
+        $runfile
     fi
+    echo "\n===/Build and Program output==="
 fi
-
-if [ "$isinputfile" = true ] ; then
-    echo "Using input: $inputfilename"
-    echo "cat ./inputs/$inputfilename | ./exec/$sourcefile.out"
-    echo "===Program output:==="
-    touch ./inputs/$inputfilename
-    cat ./inputs/$inputfilename | ./exec/$sourcefile.out
-fi
-
-
-if [ "$runonly" = true ] ; then
-    echo "Running: $runfile"
-    echo "./exec/$runfile"   
-    echo "===Program output:==="
-    ./exec/$runfile 
-fi
-
-echo "\n===/Build and Program output==="
