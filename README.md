@@ -26,11 +26,14 @@ sh makenew.sh -x classes_structs.cpp
 ## -x remove and make new files (.cpp, .out, .txt)
 ```
 
-
-
 ## Lessons
 
 Note: Unlike C, C++ allows dynamic allocation of arrays at runtime without special calls like malloc(). If , int arr[n] will create an array with space for  integers.
 Accessing elements of an array.  E.g. c would require int arr[10] explicitily without malloc();
 
 Note: In C++ data members of a class are private by default and the members of a structure are public by default.
+
+Tool: C++11 Range-based for-loop construction:
+```for (auto&& [first,second] : mymap)```
+```for (const int& n : nvec)```
+```for (int n : nvec)```
