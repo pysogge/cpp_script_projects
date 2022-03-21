@@ -1,4 +1,4 @@
-# Build New Source Files
+# Create New Source Files
 
 ##  sh makenew.sh -x <filename> (with or without extension)
 ## Removes all files with file basename (.cpp, .out, .txt)
@@ -28,6 +28,7 @@ while getopts n:r:x: opt
 do
     # echo "opt: $opt"
     # echo "{OPTARG}: ${OPTARG}"
+    sourcename=${OPTARG}
     sourcename=$(echo "$sourcename" | cut -f 1 -d '.') || $sourcename
     sourcefile="$sourcedir/$sourcename.cpp"
     inputfile="$inputdir/$sourcename-input.txt"
